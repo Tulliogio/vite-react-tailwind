@@ -1,12 +1,9 @@
-
-
+import { useEffect, useState } from "react";
 import Header from "./components/iconos/Header";
 import TodoComputed from "./components/iconos/TodoComputed";
+import TodoCreate from "./components/iconos/TodoCreate";
 import TodoFilter from "./components/iconos/TodoFilter";
 import TodoList from "./components/iconos/TodoList";
-import TodoCreate from "./components/iconos/TodoCreate";
-import { useEffect, useState } from "react";
-
 
 const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
@@ -86,7 +83,8 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-300 bg-mobile-light bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-mobile-dark md:bg-desktop-light md:dark:bg-desktop-dark">
+        
+        <div className="min-h-screen bg-gray-300  bg-[url(./assets/images/bg-mobile-light.jpg)] bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900  dark:bg-[url(./assets/images/bg-mobile-dark.jpg)] md:bg-[url('./assets/images/bd-desktop-light.jpg')] md:dark:bg-[url('./assets/images/bg-desktop-dark.jpg')]">
             <Header />
 
             <main className="container mx-auto mt-8 px-4 md:max-w-xl">

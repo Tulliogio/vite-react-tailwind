@@ -1,30 +1,34 @@
-import MoonIcon from "./MoonIcon";
 import { useEffect, useState } from "react";
 import SunIcon from "./SunIcon";
-const initialStateDarkMode = localStorage.getItem('theme') === 'dark';
-const Header = () => {
-  const [darkMode, setDarkMode] = useState(initialStateDarkMode);
+import MoonIcon from "./MoonIcon";
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-     
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    
-      localStorage.setItem('theme', 'light');
-    }
-  },[darkMode])
- 
-     return ( <header className="container mx-auto px-4 pt-8" >
-     <div className="flex justify-between">
-   <h1 className="uppercase text-white text-3xl font-semibold tracking-[0.5rem]">Todo</h1>
-         <button onClick={() => setDarkMode(!darkMode)}>
-           {darkMode ? <MoonIcon/> : <SunIcon/>}
-       </button>
-       </div>
-     
-   </header>)
-}
+const initialDarkToggle = document.documentElement.className.includes("dark");
+
+const Header = () => {
+    const [darkToggle, setDarkToggle] = useState(initialDarkToggle);
+
+    useEffect(() => {
+        if (darkToggle) {
+            document.documentElement.classList.add("dark");
+            localStorage.theme = "dark";
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.theme = "light";
+        }
+    }, [darkToggle]);
+
+    return (
+        <header className="container mx-auto px-4 pt-8 md:max-w-xl">
+            <div className="flex justify-between ">
+                <h1 className="text-3xl font-semibold uppercase tracking-[0.3em] text-white ">
+                    Todo
+                </h1>
+                <button onClick={() => setDarkToggle(!darkToggle)}>
+                    {darkToggle ? <SunIcon /> : <MoonIcon />}
+                </button>
+            </div>
+        </header>
+    );
+};
+
 export default Header;
